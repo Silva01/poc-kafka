@@ -1,0 +1,14 @@
+
+spring:
+  application.name: API Creator message
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: silva.daniel.project.poc.kafka.api.message.CustomKafkaSerializer
+    admin:
+      auto-create: true
+      client-id: api-admin
+    streams:
+      replication-factor: 2
+

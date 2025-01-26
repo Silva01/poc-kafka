@@ -1,0 +1,33 @@
+resilience4j:
+  retry:
+    configs:
+      default:
+        maxAttempts: 3
+        waitDuration: 1s
+        retryExceptions:
+          - java.lang.Exception
+          - java.lang.RuntimeException
+    instances:
+      kafkaRetry:
+        baseConfig: default
+
+spring:
+  application.name: consumer
+  kafka:
+    bootstrap-servers: localhost:29092
+    consumer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: silva.daniel.project.poc.kafka.api.message.CustomKafkaSerializer
+      enable-auto-commit: false
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    admin:
+      auto-create: true
+      client-id: api-admin
+    streams:
+      replication-factor: 2
+    listener:
+      ack-mode: manual
+server:
+  port: 8081
