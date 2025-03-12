@@ -4,6 +4,7 @@ public class ProcessExecutionProcess {
     private String id;
     private String type;
     private String estrutura;
+    private String key;
 
     public String getId() {
         return id;
@@ -29,12 +30,21 @@ public class ProcessExecutionProcess {
         this.estrutura = estrutura;
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     @Override
     public String toString() {
         return "ProcessExecutionProcess{" +
                 "id='" + id + '\'' +
                 ", type='" + type + '\'' +
                 ", estrutura='" + estrutura + '\'' +
+                ", key='" + key + '\'' +
                 '}';
     }
 }

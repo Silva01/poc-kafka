@@ -21,13 +21,13 @@ public class MessageController {
 
     @PostMapping("/consume")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createConsumeMessage(@RequestBody Object message) {
-        messageProducer.sendMessage(TOPIC_CONSUME_MESSAGE, new Message(MessageTypeEnum.CONSUME_MESSAGE.getType(), message));
+    public void createConsumeMessage(@RequestBody Request message) {
+        messageProducer.sendMessage(TOPIC_CONSUME_MESSAGE, new Message(MessageTypeEnum.CONSUME_MESSAGE.getType(), message), message.key());
     }
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createCreateMessage(@RequestBody Object message) {
-        messageProducer.sendMessage(TOPIC_CONSUME_MESSAGE, new Message(MessageTypeEnum.PROCESS_MESSAGE.getType(), message));
+    public void createCreateMessage(@RequestBody Request message) {
+        messageProducer.sendMessage(TOPIC_CONSUME_MESSAGE, new Message(MessageTypeEnum.PROCESS_MESSAGE.getType(), message), message.key());
     }
 }
